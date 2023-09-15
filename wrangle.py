@@ -46,3 +46,9 @@ def data_cleaned(df):
     df.product_id = df.product_id.astype(int)
     df.quantity = df.quantity.astype(int)
     return df
+
+
+def split_data(df):
+    train =  df[df.transaction_date < '2019-04-22']
+    test = df[df.transaction_date >= '2019-04-22']
+    return train, test
