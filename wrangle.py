@@ -52,3 +52,11 @@ def split_data(df):
     train =  df[df.transaction_date < '2019-04-22']
     test = df[df.transaction_date >= '2019-04-22']
     return train, test
+
+
+def get_store_sales(df):
+    stores_grouped = df.groupby('sales_outlet_id')['line_item_amount'].sum().reset_index()
+    plt.figure(figsize=(12, 6))
+    sns.barplot(data=stores_grouped, x='sales_outlet_id', y='line_item_amount')
+    plt.title('Sales by store for first 3 weeks')
+    plt.show()
