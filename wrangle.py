@@ -60,3 +60,12 @@ def get_store_sales(df):
     sns.barplot(data=stores_grouped, x='sales_outlet_id', y='line_item_amount')
     plt.title('Sales by store for first 3 weeks')
     plt.show()
+    
+    
+def daily_company_sales(df):
+    daily_sales = df.groupby('transaction_date')['line_item_amount'].sum().reset_index()
+    plt.figure(figsize=(12, 6))
+    plt.title('Daily company sales for 3 weeks')
+    sns.lineplot(data=daily_sales, x='transaction_date', y='line_item_amount', marker='o')
+    plt.xticks(daily_sales.transaction_date, rotation=90)
+    plt.show()
