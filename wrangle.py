@@ -69,3 +69,12 @@ def daily_company_sales(df):
     sns.lineplot(data=daily_sales, x='transaction_date', y='line_item_amount', marker='o')
     plt.xticks(daily_sales.transaction_date, rotation=90)
     plt.show()
+    
+    
+def daily_store_sales(df):
+    daily_store_sales = df.groupby(['transaction_date', 'sales_outlet_id'])['line_item_amount'].sum().reset_index()
+    plt.figure(figsize=(12, 6))
+    sns.lineplot(data=daily_store_sales, x='transaction_date', y='line_item_amount', marker='o', hue='sales_outlet_id')
+    plt.xticks(daily_store_sales.transaction_date, rotation=90)
+    plt.title('Daily Sales by Store')
+    plt.show()
