@@ -95,3 +95,15 @@ def best_sell_product(df):
     plt.title('Products by Revenue')
     plt.ylabel('Amount')
     plt.show()
+    
+    
+def best_sell_group(df):
+    products = pd.read_csv('product.csv')
+    product_grouped = df.groupby('product_id')['line_item_amount'].sum().reset_index()
+    product_grouped = pd.merge(product_grouped, products, on='product_id')
+    product_grouped = product_grouped.sort_values('line_item_amount', ascending=False)
+    group_sums = product_grouped.groupby('product_group')['line_item_amount'].sum().reset_index()
+    plt.figure(figsize=(15, 6))
+    sns.barplot(data=group_sums, x='product_group', y='line_item_amount')
+    plt.ylabel('Amount')
+    plt.show()
