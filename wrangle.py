@@ -107,3 +107,19 @@ def best_sell_group(df):
     sns.barplot(data=group_sums, x='product_group', y='line_item_amount')
     plt.ylabel('Amount')
     plt.show()
+    
+    
+def most_sold_products(df):
+    products_by_quantity = df[['product_id', 'quantity']]
+    products_by_quantity = products_by_quantity.groupby('product_id').sum()
+    products = pd.read_csv('product.csv')
+    products = products[['product', 'product_id']]
+    products_by_quantity = pd.merge(products_by_quantity, products, on='product_id')
+    products_by_quantity = products_by_quantity.sort_values('quantity', ascending=False)
+    plt.figure(figsize=(15, 6))
+    sns.barplot(data=products_by_quantity, x='product', y='quantity')
+    plt.xticks(rotation=90)
+    plt.xlabel('Item')
+    plt.ylabel('Quantity')
+    plt.title('Items by quantity sold')
+    plt.show()
