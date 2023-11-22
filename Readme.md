@@ -62,3 +62,4 @@ A time series analysis was attempted by splitting off the last week of the data.
 
 ## Next Steps
 - Create a more comprehensive visualization dashboard using Tableau.
+- https://public.tableau.com/app/profile/josh.burch/viz/CoffeShop_17005852363230/Dashboard1?publish=yes
